@@ -1,0 +1,29 @@
+{
+  "name": "Engel & Engel - Premier Forensic Accounting Firm in Los Angeles",
+  "short_name": "Engel & Engel",
+  "description": "Los Angeles' premier forensic accounting firm with 30+ years of experience in complex business litigation and expert witness testimony.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1d2653",
+  "background_color": "#1d2653",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

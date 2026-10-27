@@ -1,0 +1,18 @@
+
+
+# Exclude Glamm Hair project folders (separate project)
+glamm-hair/
+glamm-hair-site/
+
+# Screenshots and documentation
+screenshots/
+client-review-documents/
+*.md
+!README.md
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__/

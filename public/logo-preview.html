@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Preview - Engel & Engel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .logo-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .logo-card h3 {
+            margin: 0 0 15px 0;
+            color: #1e40af;
+            font-size: 16px;
+        }
+        .logo-preview {
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .logo-preview.dark {
+            background: #1f2937;
+        }
+        .logo-preview.light {
+            background: #ffffff;
+        }
+        .logo-preview img {
+            max-width: 100%;
+            height: auto;
+            max-height: 80px;
+        }
+        .logo-info {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+        .current-usage {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .not-used {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Logo Files Preview</h1>
+        
+        <div class="logo-grid">
+            <!-- Logo 1 -->
+            <div class="logo-card">
+                <h3>logo-accountants-white-font.png</h3>
+                <div class="logo-preview dark">
+                    <img src="/images/logo-accountants-white-font.png" alt="Logo White Font">
+                </div>
+                <div class="logo-preview light">
+                    <img src="/images/logo-accountants-white-font.png" alt="Logo White Font">
+                </div>
+                <div class="logo-info">
+                    Size: 35KB<br>
+                    Dimensions: Check in browser
+                </div>
+                <div class="current-usage">✅ CURRENTLY USED: Header (dark bg) & Footer</div>
+            </div>
+
+            <!-- Logo 2 -->
+            <div class="logo-card">
+                <h3>logo.png</h3>
+                <div class="logo-preview dark">
+                    <img src="/images/logo.png" alt="Logo">
+                </div>
+                <div class="logo-preview light">
+                    <img src="/images/logo.png" alt="Logo">
+                </div>
+                <div class="logo-info">
+                    Size: 50KB<br>
+                    Dimensions: Check in browser
+                </div>
+                <div class="current-usage">✅ CURRENTLY USED: Header (scrolled/light bg)</div>
+            </div>
+
+            <!-- Logo 3 -->
+            <div class="logo-card">
+                <h3>logo-white.png</h3>
+                <div class="logo-preview dark">
+                    <img src="/images/logo-white.png" alt="Logo White">
+                </div>
+                <div class="logo-preview light">
+                    <img src="/images/logo-white.png" alt="Logo White">
+                </div>
+                <div class="logo-info">
+                    Size: 32KB<br>
+                    Dimensions: Check in browser
+                </div>
+                <div class="not-used">❌ NOT CURRENTLY USED</div>
+            </div>
+
+            <!-- Logo 4 -->
+            <div class="logo-card">
+                <h3>logo-white-transparent.png</h3>
+                <div class="logo-preview dark">
+                    <img src="/images/logo-white-transparent.png" alt="Logo White Transparent">
+                </div>
+                <div class="logo-preview light">
+                    <img src="/images/logo-white-transparent.png" alt="Logo White Transparent">
+                </div>
+                <div class="logo-info">
+                    Size: 117KB<br>
+                    Dimensions: Check in browser
+                </div>
+                <div class="not-used">❌ NOT CURRENTLY USED</div>
+            </div>
+
+            <!-- Logo 5 -->
+            <div class="logo-card">
+                <h3>logo-dark.svg</h3>
+                <div class="logo-preview dark">
+                    <img src="/images/logo-dark.svg" alt="Logo Dark SVG">
+                </div>
+                <div class="logo-preview light">
+                    <img src="/images/logo-dark.svg" alt="Logo Dark SVG">
+                </div>
+                <div class="logo-info">
+                    Size: 13KB (SVG)<br>
+                    Dimensions: Scalable vector
+                </div>
+                <div class="not-used">❌ NOT CURRENTLY USED</div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 30px;">
+            <h2 style="color: #1e40af; margin-top: 0;">Current Configuration:</h2>
+            <ul style="line-height: 1.8;">
+                <li><strong>Header on dark backgrounds:</strong> logo-accountants-white-font.png</li>
+                <li><strong>Header when scrolled (light bg):</strong> logo.png</li>
+                <li><strong>Footer:</strong> logo-accountants-white-font.png</li>
+            </ul>
+            <p style="color: #6b7280; margin-top: 20px;">
+                <strong>Note:</strong> Each logo is shown on both dark and light backgrounds so you can see how it looks in different contexts.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

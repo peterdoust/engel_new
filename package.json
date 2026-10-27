@@ -1,0 +1,59 @@
+{
+  "name": "engel-website",
+  "version": "1.0.0",
+  "description": "Engel and Engel Forensic Accounting Website",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "vercel-check": "next build"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.10",
+    "autoprefixer": "^10.4.16",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.288.0",
+    "mongodb": "^7.1.1",
+    "next": "^14.2.32",
+    "next-themes": "^0.2.1",
+    "nodemailer": "^6.9.7",
+    "postcss": "^8.4.31",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
+    "resend": "^6.9.4",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.6",
+    "@tailwindcss/typography": "^0.5.10",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^13.4.0",
+    "@types/nodemailer": "^6.4.14",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "14.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "puppeteer": "^24.23.0"
+  },
+  "keywords": [
+    "forensic accounting",
+    "fraud investigation",
+    "expert witness",
+    "business valuation",
+    "los angeles"
+  ],
+  "author": "Engel and Engel",
+  "license": "MIT"
+}

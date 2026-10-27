@@ -1,0 +1,277 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import Image from 'next/image';
+import TrackedPhoneLink from '@/components/ui/TrackedPhoneLink'
+
+const practiceAreas = [
+  { title: 'Economic Damages', href: '/practice-areas/economic-damages' },
+  { title: 'Fraud Investigation', href: '/practice-areas/fraud-investigation' },
+  { title: 'Business Valuation', href: '/practice-areas/business-valuation' },
+  { title: 'Bankruptcy & Insolvency', href: '/practice-areas/bankruptcy-insolvency' },
+  { title: 'IP Litigation', href: '/practice-areas/ip-litigation' },
+  { title: 'Real Estate Litigation', href: '/practice-areas/real-estate-litigation' },
+  { title: 'Construction Litigation', href: '/practice-areas/construction-litigation' },
+  { title: 'Alter Ego', href: '/practice-areas/alter-ego' },
+  { title: 'Fraudulent Transfers', href: '/practice-areas/fraudulent-transfers' },
+  { title: 'Employment Litigation', href: '/practice-areas/employment-litigation' },
+  { title: 'Business Interruption', href: '/practice-areas/business-interruption' },
+  { title: 'Personal Injury', href: '/practice-areas/personal-injury' },
+  { title: 'Accounting Malpractice', href: '/practice-areas/accounting-malpractice' },
+  { title: 'Partnership & Shareholder Disputes', href: '/practice-areas/partnership-disputes' },
+  { title: 'Trust/Probate Litigation', href: '/practice-areas/trust-probate-litigation' },
+  { title: 'Defamation Litigation', href: '/practice-areas/defamation' },
+];
+
+export default function IpLitigationPage() {
+  const pathname = usePathname();
+  const { scrollY } = useScroll();
+
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+
+  const services = [
+    'Infringement Damages',
+    'Misappropriation of Trade Secrets',
+    'Unfair Business Competition',
+    'Lost Profits Analysis',
+    'Market Share Analysis',
+    'Mitigation Analysis',
+    'Reasonable Royalty Analysis',
+    'Panduit Test',
+    'Analysis of Substitute Products',
+    'Corrective Advertising',
+    'Expert Witness Testimony',
+  ];
+
+  const publications = [
+    'Trademark Infringement Damages',
+    'Patent Infringement Damages',
+  ];
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen">
+
+        {/* HERO */}
+        <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <motion.div
+              style={{ y: y2, scale }}
+              className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full"
+            />
+            <motion.div
+              style={{ y: y1 }}
+              className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full"
+            />
+          </div>
+
+          <div className="container-custom relative z-10 w-full pb-20 pt-40">
+            <motion.div style={{ y: springY1, opacity }} className="max-w-5xl">
+              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">
+                Practice Area
+              </p>
+
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9]">
+                Intellectual Property<br />
+                <span className="font-serif italic text-[#D4AF37] font-medium">
+                  (IP) Litigation
+                </span>
+              </h1>
+
+              <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CONTENT WITH SIDEBAR */}
+        <div className="container-custom relative py-16 lg:py-24">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-16">
+
+            {/* SIDEBAR */}
+            <aside className="hidden lg:block lg:w-72 xl:w-80 flex-shrink-0 sticky top-28">
+              <nav className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                <div className="p-5 bg-primary-950">
+                  <h3 className="text-sm font-bold text-white tracking-[0.2em] uppercase">
+                    Practice Areas
+                  </h3>
+                </div>
+
+                <div className="max-h-[70vh] overflow-y-auto py-2">
+                  {practiceAreas.map((area) => {
+                    const isActive = pathname === area.href;
+
+                    return (
+                      <Link
+                        key={area.href}
+                        href={area.href}
+                        className={`block px-5 py-3 text-[0.85rem] font-medium border-l-[3px] ${
+                          isActive
+                            ? 'bg-primary-950/5 text-primary-950 border-l-[#D4AF37] font-semibold'
+                            : 'text-gray-800 border-l-transparent hover:bg-slate-50 hover:text-primary-950'
+                        }`}
+                      >
+                        {area.title}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </nav>
+            </aside>
+
+            {/* MAIN CONTENT */}
+            <div className="flex-1 min-w-0">
+  <section className="">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <div className="relative">
+                    <div className="absolute -left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/40 to-transparent rounded-full hidden lg:block" />
+                   <p className="text-[18px] leading-relaxed">
+                  Intellectual property litigation often demands the expertise
+                  of a forensic accountant in evaluating infringement damages.
+                  Engel & Engel has extensive experience conducting forensic
+                  investigations and providing expert testimony in connection
+                  with intellectual property matters for both plaintiffs and
+                  defendants.
+                </p>
+
+                <p className="mt-4">
+                  When patents, copyrights, trademarks, trade secrets, and
+                  unfair business practices are litigated, Engel & Engel works
+                  with counsel to prepare sound analyses consistent with
+                  financial principles articulated by the courts.
+                </p>
+                  </div>
+                </motion.div>
+              </section>
+
+            
+
+              {/* SERVICES */}
+              <section className="py-10 my-10 border-t border-b border-slate-200">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary-950 mb-6">
+                  How Engel & Engel Helps IP Litigation Attorneys
+                </h2>
+                  <div className="h-[3px] w-16 bg-primary-950 mb-4" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                  {services.map((item, i) => (
+                    <div
+                      key={i}
+                      className="p-5 bg-white rounded-2xl border border-slate-200 hover:shadow-lg"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* PUBLICATIONS */}
+              <section>
+                <h2 className="text-2xl md:text-3xl font-bold text-primary-950 mb-6">
+                  Research Publications
+                </h2>
+                  <div className="h-[3px] w-16 bg-primary-950 mb-4" />
+
+                <div className="space-y-3">
+                  {publications.map((item, i) => (
+                    <a
+                      key={i}
+                      href="/publications/ip-litigation"
+                      className="flex gap-5 p-5 rounded-xl bg-white border hover:shadow-md"
+                    >
+                      <span className="w-8 h-8 rounded-lg bg-primary-950/5 text-primary-950 flex items-center justify-center text-sm font-bold">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+
+                      <span className="font-medium text-gray-800">{item}</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {/* CONTACT CTA */}
+        <section className="relative py-28 bg-[#1D2653] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+
+          <div className="container-custom relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-5xl mx-auto"
+            >
+              <p className="text-base md:text-lg text-white/60 font-light mb-10 text-center">
+                For additional information about{' '}
+                <span className="text-white font-medium">Engel &amp; Engel&apos;s</span>{' '}
+                <span className="font-serif italic text-[#D4AF37]">IP Litigation</span>{' '}
+                or a consultation, please contact:
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="flex items-center gap-6 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <div className="flex-shrink-0">
+                    <div className="rounded-full overflow-hidden border-2 border-[#D4AF37]/40">
+                      <Image width={80} height={80} src="/images/team/brandon-engel.jpg" alt="Brandon J. Engel" className="w-20 h-20 object-cover object-top" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Brandon J. Engel</h3>
+                    <p className="text-white/50 text-sm font-medium tracking-widest uppercase">CPA, CFE, ABV</p>
+                    <div className="h-px w-16 bg-[#D4AF37] mt-2" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center space-y-5 p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                  <a href="mailto:brandon@engelandengel.com" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      brandon@engelandengel.com
+                    </span>
+                  </a>
+
+                  <TrackedPhoneLink phone="310-277-2220" location="practice_area_cta" className="group flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-[#1D2653] transition-all duration-300 shrink-0">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-lg font-semibold text-white/90 group-hover:text-white border-b border-white/20 group-hover:border-[#D4AF37] pb-0.5 transition-all duration-200">
+                      310-277-2220
+                    </span>
+                  </TrackedPhoneLink>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        </section>
+
+        <Footer />
+      </main>
+    </>
+  );
+}
