@@ -1222,7 +1222,7 @@
 /* ==========================================================================
    Homepage hero — "Wherever the Truth Leads." (components/sections/HeroTruthLeads.tsx)
    Intro sequence from the approved design: photo eases in, headline slides in,
-   gold trail draws, numbers band rises. Pure CSS so it starts on first paint.
+   gold trail draws, numbers band rises, stat cards arrive one by one. Pure CSS so it starts on first paint.
    ========================================================================== */
 .ee-hero {
   min-height: clamp(360px, calc(100vh - var(--hdr)), 960px);
@@ -1231,8 +1231,8 @@
 @media (min-width: 1000px) {
   .ee-hero-stats {
     grid-template-columns: repeat(6, minmax(max-content, 1fr));
-    /* Wider than 1440px: let the stats run into the right margin so the numbers get room */
-    margin-right: min(0px, calc((1440px - 100vw) / 2));
+    /* Wider than 1920px: let the stats run into the right margin so the numbers get room */
+    margin-right: min(0px, calc((1920px - 100vw) / 2));
     padding: 0 1.9vw 0 1.46vw;
   }
   .ee-hero-label {
@@ -1255,25 +1255,29 @@
 }
 @keyframes eeHeroGlowPulse { 0%, 100% { opacity: 0.35; } 40% { opacity: 0.7; } }
 @keyframes eeHeroBand { from { transform: translateY(105%); } to { transform: none; } }
-@keyframes eeHeroStat { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes eeHeroStat { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes eeHeroWord { from { transform: scale(.86); } to { transform: none; } }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ee-hero-bg { animation: eeHeroBg 3840ms cubic-bezier(.2,.6,.2,1) both; }
+  /* Photo fade-in and trail wait until the photo is placed (.ee-hero-ready), so it never jumps */
+  .ee-hero-ready .ee-hero-bg { animation: eeHeroBg 3840ms cubic-bezier(.2,.6,.2,1) both; }
   .ee-hero-line { animation: eeHeroLine 1320ms cubic-bezier(.16,1,.3,1) both; }
   .ee-hero-l1 { animation-delay: 360ms; }
   .ee-hero-l2 { animation-delay: 900ms; }
   .ee-hero-l3 { animation-delay: 1440ms; }
-  .ee-hero-trail { animation: eeHeroDraw 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
-  .ee-hero-trail-glow {
+  .ee-hero-ready .ee-hero-trail { animation: eeHeroDraw 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
+  .ee-hero-ready .ee-hero-trail-glow {
     animation: eeHeroDraw 2040ms cubic-bezier(.5,0,.3,1) 2100ms both,
                eeHeroGlowPulse 1680ms ease-in-out 3900ms;
   }
-  .ee-hero-head { animation: eeHeroHead 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
-  .ee-hero-band { animation: eeHeroBand 1140ms cubic-bezier(.16,1,.3,1) 3780ms both; }
-  .ee-hero-stat { animation: eeHeroStat 960ms cubic-bezier(.16,1,.3,1) both; }
+  .ee-hero-ready .ee-hero-head { animation: eeHeroHead 2040ms cubic-bezier(.5,0,.3,1) 2100ms both; }
+  /* Band rises, then the stat cards arrive one at a time (delays set in HeroTruthLeads.tsx) */
+  .ee-hero-band { animation: eeHeroBand 900ms cubic-bezier(.22,1,.36,1) 3780ms both; }
+  .ee-hero-stat { animation: eeHeroStat 432ms cubic-bezier(.22,1,.36,1) both; }
+  .ee-hero-word { animation: eeHeroWord 540ms cubic-bezier(.22,1,.36,1) both; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ee-hero-stat { animation-delay: 0ms !important; }
+  .ee-hero-stat, .ee-hero-word { animation-delay: 0ms !important; }
 }
 
 /* Homepage intro — memberships strip scrolls slowly (IntroSection.tsx) */

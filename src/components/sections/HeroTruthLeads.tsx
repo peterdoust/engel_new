@@ -1,15 +1,22 @@
 'use client'
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+
+// Runs before paint in the browser (falls back to useEffect on the server, where it does nothing)
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 import Link from 'next/link'
 
 /**
  * Homepage hero — "Wherever the Truth Leads."
- * Built from the approved design (Downloads/Engel_design/EE Home.dc.html, E&E_Website_Home_FA.pdf).
+ * Built from the approved design (en/engel_design-main/EE Home.dc.html, E&E_Website_Home_FA.pdf).
  *
  * - Freeway photo with a gold light trail traced along the overpass curve.
  * - Intro sequence (CSS keyframes in globals.css, `ee-hero-*`): photo eases in, headline slides in
- *   line by line, the trail draws, the numbers band rises, then the stats count up.
+ *   line by line, the trail draws, the numbers band rises, then the stat cards arrive one at a
+ *   time, each number counting up before the next card appears.
+ * - Desktop: the photo's bottom sits on the hero's bottom and the photo is squashed a little
+ *   vertically (the trail stretches with it). Phones / portrait tablets: the photo fits the area
+ *   above the numbers band, with the band's blue filling behind it.
  * - The photo (and the trail with it) is slid / zoomed just enough to keep the trail clear of the
  *   headline at every screen size — ported from the design file's layout logic.
  * - Pair with <Header solid /> since this hero is light.
@@ -19,6 +26,9 @@ const PHOTO = '/images/hero/ee-freeway-2400.jpg'
 const PHOTO_W = 2400
 const PHOTO_H = 1602
 const ART_W = 1600 // the trail is drawn on a 1600 x 1068 canvas laid over the photo
+const ART_H = 1068
+
+const BAND_BG = 'linear-gradient(90deg,rgba(52,63,145,0.93) 0%,rgba(52,63,145,0.93) 76%,rgba(52,58,113,0.93) 88%,rgba(34,38,81,0.93) 100%)'
 
 // Gold trail along the overpass curve (from the design file)
 const TRAIL =
@@ -34,30 +44,53 @@ interface Stat {
   prefix?: string
   suffix?: string
   comma?: boolean
+  text?: boolean // nothing to count (BIG 4)
 }
 
 const STATS: Stat[] = [
-  { label: 'Years of Forensic Accounting Practice', lines: 'Years of Forensic\nAccounting Practice', href: '/about', to: 30, suffix: '+', final: '30+' },
+  { label: 'Years of Forensic Accounting Practice', lines: 'Years of Forensic\nAccounting Practice', href: '/#about', to: 30, suffix: '+', final: '30+' },
   { label: 'Forensic Accounting Cases', lines: 'Forensic Accounting\nCases', href: '/cases', to: 1000, suffix: '+', comma: true, final: '1,000+' },
   { label: 'Research Publications', lines: 'Research\nPublications', href: '/publications', to: 20, final: '20' },
-  { label: 'Professional Certifications', lines: 'Professional\nCertifications', href: '/about', to: 6, final: '6' },
-  { label: 'Forensic Experience', href: '/team', final: 'BIG 4' },
+  { label: 'Professional Certifications', lines: 'Professional\nCertifications', href: '/#certifications', to: 6, final: '6' },
+  { label: 'Forensic Experience', href: '/team', final: 'BIG 4', text: true },
   { label: 'Jury Award', href: '/cases', to: 2.3, dec: 1, prefix: '$', suffix: 'B', final: '$2.3B' },
 ]
 
-// Count-up timing (ms after load) — matches the band rising at ~3.8s
-const COUNT_START = 4200
-const COUNT_STAGGER = 130
-const COUNT_DUR = 1680
-const BAND_START = 3780 // must match .ee-hero-band animation-delay in globals.css
+// Intro timing (ms after load). BAND_START / BAND_DUR must match .ee-hero-band in globals.css.
+const BAND_START = 3780
+const BAND_DUR = 900
+// One card at a time: a card fades in, its number counts up (starting COUNT_LEAD after the fade
+// begins), and the next card appears the moment that count lands. BIG 4's slot is shorter.
+const CARD_START = BAND_START + BAND_DUR - 180
+const COUNT_DUR = 552
+const COUNT_LEAD = 96
+const TEXT_SLOT = 540
+const CARD_DELAY: number[] = []
+{
+  let at = CARD_START
+  STATS.forEach((s, i) => {
+    CARD_DELAY[i] = at
+    at += s.text ? TEXT_SLOT : COUNT_LEAD + COUNT_DUR
+  })
+}
+const COUNT_END = CARD_DELAY[STATS.length - 1] + COUNT_LEAD + COUNT_DUR
+
+// Top edge of the lower (straight) deck on the 1600 x 1068 trail canvas, measured from the photo.
+// It runs from the left edge to where it meets the curved bridge. The headline must stay clear of
+// it too, or the subtitle sits on the deck on wide, short windows.
+const DECK_EDGE: [number, number][] = [[-40, 597], [0, 593], [133, 576], [267, 561], [400, 548], [533, 537], [620, 529]]
+const DECK_PTS = DECK_EDGE.slice(1).flatMap(([x1, y1], k) => {
+  const [x0, y0] = DECK_EDGE[k]
+  return Array.from({ length: 12 }, (_, i) => ({ x: x0 + ((x1 - x0) * i) / 12, y: y0 + ((y1 - y0) * i) / 12 }))
+})
 
 type Box = { x: number; y: number; w: number; h: number }
 type Rect = { l: number; t: number; r: number; b: number }
 
 function formatStat(s: Stat, i: number, t: number | null) {
   if (t === null || s.to === undefined) return s.final
-  const p = Math.min(1, Math.max(0, (t - COUNT_START - i * COUNT_STAGGER) / COUNT_DUR))
-  const v = s.to * (1 - Math.pow(1 - p, 3))
+  const p = Math.min(1, Math.max(0, (t - CARD_DELAY[i] - COUNT_LEAD) / COUNT_DUR))
+  const v = s.to * (1 - Math.pow(1 - p, 2))
   let str = s.dec ? v.toFixed(s.dec) : String(Math.round(v))
   if (s.comma) str = Math.round(v).toLocaleString('en-US')
   return (s.prefix || '') + str + (s.suffix || '')
@@ -79,39 +112,45 @@ export default function HeroTruthLeads() {
   const bgRef = useRef<HTMLDivElement>(null)
   const lineRef = useRef<SVGPathElement>(null)
   const bandRef = useRef<HTMLDivElement>(null)
+  const bandBlueRef = useRef<HTMLDivElement>(null)
   const lineRefs = [useRef<HTMLSpanElement>(null), useRef<HTMLSpanElement>(null), useRef<HTMLSpanElement>(null)]
   const trailPts = useRef<{ x: number; y: number }[] | null>(null)
   const [art, setArt] = useState<Box | null>(null)
+  const [fillBand, setFillBand] = useState(false)
   const [countT, setCountT] = useState<number | null>(null)
   const [hover, setHover] = useState(-1)
 
-  // Gap (px) between the headline lines and the trail's glow for a given photo box
+  // Gap (px) between the headline lines and the nearest of: the trail's glow, the lower deck
   const clearance = (box: Box, bw: number, bh: number, lines: Rect[]) => {
     const u = box.w / ART_W
-    const reach = 9 * u + 10 // half the glow stroke width (18) + margin
+    const uy = box.h / ART_H
     let min = Infinity
-    for (const q of trailPts.current!) {
-      const X = box.x + q.x * u
-      const Y = box.y + q.y * u
-      if (X < -20 || X > bw + 20 || Y < -20 || Y > bh + 20) continue
-      for (const r of lines) {
-        const dx = Math.max(r.l - X, 0, X - r.r)
-        const dy = Math.max(r.t - Y, 0, Y - r.b)
-        min = Math.min(min, Math.hypot(dx, dy) - reach)
+    const check = (pts: { x: number; y: number }[], reach: number) => {
+      for (const q of pts) {
+        const X = box.x + q.x * u
+        const Y = box.y + q.y * uy
+        if (X < -20 || X > bw + 20 || Y < -20 || Y > bh + 20) continue
+        for (const r of lines) {
+          const dx = Math.max(r.l - X, 0, X - r.r)
+          const dy = Math.max(r.t - Y, 0, Y - r.b)
+          min = Math.min(min, Math.hypot(dx, dy) - reach)
+        }
       }
     }
+    check(trailPts.current!, 13 * u + 10) // half the glow stroke width (26) + margin
+    check(DECK_PTS, 22) // keeps at least ~12px of sky between the text and the deck
     return min
   }
 
-  // Cover-fit the photo. Desktop: pinned left, shown from 19.2% down (per the approved PDF).
-  // Phones: shown 34.8% across. Then pan / zoom only if the trail would touch the headline.
   const layout = useCallback(() => {
     const bg = bgRef.current
     const sec = bg?.parentElement
     if (!bg || !sec) return
     const bw = bg.clientWidth
     const bh = bg.clientHeight
-    const desktop = window.innerWidth >= 700
+    if (!bw || !bh) return
+    const width = window.innerWidth
+    const desktop = width >= 700
 
     if (!trailPts.current && lineRef.current?.getTotalLength) {
       const p = lineRef.current
@@ -122,38 +161,57 @@ export default function HeroTruthLeads() {
       })
     }
 
-    // Headline line boxes relative to the hero (layout boxes, ignoring intro transforms)
+    // Layout position relative to the hero (ignores the intro transforms)
+    const offsetIn = (el: HTMLElement | null) => {
+      let x = 0
+      let y = 0
+      let e = el
+      while (e && e !== sec) {
+        x += e.offsetLeft
+        y += e.offsetTop
+        e = e.offsetParent as HTMLElement | null
+      }
+      return { x, y }
+    }
     const lines: Rect[] = lineRefs
       .map(ref => {
-        let e = ref.current as HTMLElement | null
+        const e = ref.current
         if (!e) return null
-        const w = e.offsetWidth
-        const h = e.offsetHeight
-        let x = 0
-        let y = 0
-        while (e && e !== sec) {
-          x += e.offsetLeft
-          y += e.offsetTop
-          e = e.offsetParent as HTMLElement | null
-        }
-        return { l: x, t: y, r: x + w, b: y + h }
+        const o = offsetIn(e)
+        return { l: o.x, t: o.y, r: o.x + e.offsetWidth, b: o.y + e.offsetHeight }
       })
       .filter((r): r is Rect => r !== null)
+    // Top of the blue part of the numbers band
+    const bandTop = bandBlueRef.current ? offsetIn(bandBlueRef.current).y : 0
 
-    const s = Math.max(bw / PHOTO_W, bh / PHOTO_H)
+    // Phones and portrait tablets: the band covers the bottom of the hero, so fit the photo to
+    // the area above the band. This zooms out and shows more of the freeway.
+    const tall = width < 1000 && bh > bw * 0.75 && bandTop > 0
+    const fitH = tall ? Math.min(bh, bandTop) : bh
+    const s = Math.max(bw / PHOTO_W, fitH / PHOTO_H)
     const dw = PHOTO_W * s
     const dh = PHOTO_H * s
+    // Phones: show the photo 34.8% across its hidden width
     const x = desktop ? 0 : 0.3478 * (bw - dw)
-    const y = desktop ? Math.min(0, Math.max(bh - dh, -0.192 * dh)) : (bh - dh) / 2
-    const base = { x, y, w: dw, h: dh }
-    if (!trailPts.current || !lines.length) return setArt(base)
+    // Squash the photo vertically to the approved sizes: 1093x630 at 1093 wide, 1366x800 at
+    // 1366 wide (blended in between, held beyond). It always reaches the bottom of the hero.
+    const t = Math.min(1, Math.max(0, (bw - 1093) / (1366 - 1093)))
+    const squash = (630 / ((PHOTO_H * 1093) / PHOTO_W)) * (1 - t) + (800 / ((PHOTO_H * 1366) / PHOTO_W)) * t
+    const h = tall ? dh : Math.max(dh * squash, bh)
+    const y = tall ? fitH - h : desktop ? bh - h : (bh - h) / 2
+    const base = { x, y, w: dw, h }
+    const done = (b: Box) => {
+      setArt(b)
+      setFillBand(b.h < bh - 0.5)
+    }
+    if (!trailPts.current || !lines.length) return done(base)
 
     const need = -10
     let best = base
     let bestC = clearance(base, bw, bh, lines)
     let found = bestC >= need
     const tryBox = (b: Box) => {
-      if (found) return
+      if (found || b.y + b.h < fitH - 0.5) return
       const c = clearance(b, bw, bh, lines)
       if (c > bestC) {
         best = b
@@ -177,11 +235,13 @@ export default function HeroTruthLeads() {
     }
     // 2. Zoom the panned photo about the hero's top-left corner
     for (let k = 1.01; k <= 2.001 && !found; k += 0.01) tryBox({ x: p.x * k, y: p.y * k, w: p.w * k, h: p.h * k })
-    setArt(best)
+    done(best)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
+  // Place the photo before the first paint so it never jumps. Until then it stays hidden
+  // (see `ready` below) and its fade-in + the trail draw wait for it.
+  useIsoLayoutEffect(() => {
     layout()
     document.fonts?.ready.then(layout)
     window.addEventListener('resize', layout)
@@ -194,21 +254,20 @@ export default function HeroTruthLeads() {
   }, [layout])
 
   // Count-up (skipped for reduced motion). Timed off the band's CSS animation clock,
-  // so the numbers stay in sync with the band even if the page's JS loads late.
+  // so the numbers stay in sync with the cards even if the page's JS loads late.
   useEffect(() => {
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
     let raf = 0
-    const end = COUNT_START + COUNT_STAGGER * STATS.length + COUNT_DUR
     // How far the CSS intro has already run when this effect starts (0 if unknown)
     const ct = bandRef.current?.getAnimations?.()[0]?.currentTime
     const t0 = performance.now() - (typeof ct === 'number' ? ct : 0)
     const clock = (now: number) => now - t0
-    // Band already rising (JS loaded late)? Keep the final numbers instead of resetting to 0.
-    if (performance.now() - t0 >= BAND_START) return
+    // Cards already showing (JS loaded late)? Keep the final numbers instead of resetting to 0.
+    if (performance.now() - t0 >= CARD_START) return
     setCountT(clock(t0))
     const tick = (now: number) => {
       const t = clock(now)
-      if (t < end) {
+      if (t < COUNT_END) {
         setCountT(t)
         raf = requestAnimationFrame(tick)
       } else setCountT(null)
@@ -217,26 +276,34 @@ export default function HeroTruthLeads() {
     return () => cancelAnimationFrame(raf)
   }, [])
 
+  const ready = art !== null
   const px = (n: number) => `${n.toFixed(2)}px`
   const bgStyle: React.CSSProperties = art
     ? { backgroundImage: `url('${PHOTO}')`, backgroundSize: `${px(art.w)} ${px(art.h)}`, backgroundPosition: `${px(art.x)} ${px(art.y)}`, backgroundRepeat: 'no-repeat' }
-    : { backgroundImage: `url('${PHOTO}')`, backgroundSize: 'cover', backgroundPosition: '0% 50%', backgroundRepeat: 'no-repeat' }
+    : { backgroundImage: `url('${PHOTO}')`, backgroundSize: 'cover', backgroundPosition: '0% 100%', backgroundRepeat: 'no-repeat' }
   const svgStyle: React.CSSProperties = art
     ? { left: px(art.x), top: px(art.y), width: px(art.w), height: px(art.h) }
     : { left: 0, top: 0, width: '100%', height: '100%' }
 
   return (
     <div className="relative z-20 pt-[var(--hdr)]">
-      <section
-        aria-labelledby="hero-title"
-        className="ee-hero relative flex flex-col overflow-hidden bg-brand-slate"
-      >
+      <section aria-labelledby="hero-title" className={`ee-hero ${ready ? 'ee-hero-ready' : ''} relative flex flex-col overflow-hidden bg-brand-slate`}>
         {/* Photo + gold trail */}
-        <div ref={bgRef} aria-hidden="true" className="ee-hero-bg absolute inset-0" style={{ transformOrigin: '62% 40%' }}>
-          <div role="img" aria-label="Curving Los Angeles freeway overpass against a pale sky" className="absolute inset-0" style={bgStyle} />
+        <div
+          ref={bgRef}
+          aria-hidden="true"
+          className={`ee-hero-bg absolute inset-0 ${ready ? '' : 'opacity-0'}`}
+          style={{ transformOrigin: '62% 40%', background: fillBand ? BAND_BG : undefined }}
+        >
+          <div
+            role="img"
+            aria-label="Curving Los Angeles freeway overpass against a pale sky"
+            className="absolute inset-0"
+            style={{ ...bgStyle, filter: 'brightness(1.15) saturate(1.05)' }}
+          />
           <svg
             viewBox="0 0 1600 1068"
-            preserveAspectRatio={art ? 'xMinYMin meet' : 'xMinYMid slice'}
+            preserveAspectRatio={art ? 'none' : 'xMinYMax slice'}
             className="absolute overflow-visible"
             style={svgStyle}
           >
@@ -252,10 +319,10 @@ export default function HeroTruthLeads() {
               </clipPath>
             </defs>
             <g clipPath="url(#eePillarClip)" opacity="0.4">
-              <path className="ee-hero-trail ee-hero-trail-glow" d={TRAIL} pathLength={1} fill="none" stroke="#d4af37" strokeWidth="18" filter="url(#eeGlow)" />
-              <path ref={lineRef} className="ee-hero-trail" d={TRAIL} pathLength={1} fill="none" stroke="#d4af37" strokeWidth="11" />
-              <path className="ee-hero-head" d={TRAIL} pathLength={1} fill="none" stroke="#ffe7a1" strokeWidth="32" strokeLinecap="round" filter="url(#eeHeadGlow)" />
-              <path className="ee-hero-head" d={TRAIL} pathLength={1} fill="none" stroke="#fffbee" strokeWidth="10" strokeLinecap="round" />
+              <path className="ee-hero-trail ee-hero-trail-glow" d={TRAIL} pathLength={1} fill="none" stroke="#d4af37" strokeWidth="26" filter="url(#eeGlow)" />
+              <path ref={lineRef} className="ee-hero-trail" d={TRAIL} pathLength={1} fill="none" stroke="#d4af37" strokeWidth="16" />
+              <path className="ee-hero-head" d={TRAIL} pathLength={1} fill="none" stroke="#ffe7a1" strokeWidth="44" strokeLinecap="round" filter="url(#eeHeadGlow)" />
+              <path className="ee-hero-head" d={TRAIL} pathLength={1} fill="none" stroke="#fffbee" strokeWidth="14" strokeLinecap="round" />
             </g>
           </svg>
         </div>
@@ -267,17 +334,17 @@ export default function HeroTruthLeads() {
         />
 
         {/* Headline */}
-        <div className="mx-auto max-w-[1440px] px-[clamp(20px,5.56vw,80px)] relative w-full flex-1 pb-[clamp(20px,4vh,48px)] pt-[28px] min-[700px]:pt-[clamp(24px,22svh,260px)] min-[900px]:pt-[clamp(24px,min(3.78vw,7vh),76px)]">
+        <div className="relative mx-auto w-full max-w-[1920px] flex-1 px-[clamp(20px,5.56vw,80px)] pb-[clamp(20px,4vh,48px)] pt-[28px] min-[700px]:pt-[clamp(24px,22svh,260px)] min-[900px]:pt-[clamp(24px,min(3.78vw,7vh),76px)]">
           <h1 id="hero-title" className="m-0 flex flex-col items-start uppercase text-brand-midnight">
-            <span ref={lineRefs[0]} className="ee-hero-line ee-hero-l1 font-medium leading-none tracking-[-0.03em] text-[clamp(28px,3.37vw,64px)]">
+            <span ref={lineRefs[0]} className="ee-hero-line ee-hero-l1 font-medium leading-none tracking-[-0.03em] text-[clamp(26px,calc(3.37vw-2px),62px)]">
               Wherever the
             </span>
-            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[clamp(42px,5.05vw,96px)]">
+            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[clamp(40px,calc(5.05vw-2px),94px)]">
               Truth <em className="italic">Leads.</em>
             </span>
             <span
               ref={lineRefs[2]}
-              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] max-w-[200px] font-normal normal-case leading-[1.25] tracking-normal min-[700px]:max-w-none text-[clamp(17px,1.83vw,35px)]"
+              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] max-w-[200px] font-normal normal-case leading-[1.25] tracking-normal min-[700px]:max-w-none text-[clamp(15px,calc(1.75vw-2px),33px)]"
             >
               Nationally Recognized Forensic Accountants
             </span>
@@ -286,13 +353,13 @@ export default function HeroTruthLeads() {
 
         {/* Numbers band */}
         <div ref={bandRef} className="ee-hero-band relative w-full">
-          <div className="mx-auto max-w-[1440px] px-[clamp(20px,5.56vw,80px)]">
+          <div className="mx-auto max-w-[1920px] px-[clamp(20px,5.56vw,80px)]">
             <h2 className="m-0 inline-flex items-center rounded-tr-[clamp(14px,1.5vw,26px)] bg-[rgba(212,175,55,0.93)] font-semibold uppercase leading-none tracking-[-0.01em] text-brand-cobalt text-[clamp(16px,2.05vw,40px)] pb-[clamp(11px,1.1vw,15px)] pl-[clamp(8px,0.65vw,12px)] pr-[clamp(26px,3vw,44px)] pt-[clamp(12px,1.2vw,17px)]">
               Our Numbers Do the Talking
             </h2>
           </div>
-          <div style={{ background: 'linear-gradient(90deg,rgba(52,63,145,0.93) 0%,rgba(52,63,145,0.93) 76%,rgba(52,58,113,0.93) 88%,rgba(34,38,81,0.93) 100%)' }}>
-            <div className="mx-auto max-w-[1440px] px-[clamp(20px,5.56vw,80px)] pb-[4px] pt-[2px] min-[420px]:pb-[6px] min-[420px]:pt-[4px] min-[1000px]:pb-[clamp(8px,0.8vw,16px)] min-[1000px]:pt-[clamp(8px,0.95vw,14px)]">
+          <div ref={bandBlueRef} style={{ background: BAND_BG }}>
+            <div className="mx-auto max-w-[1920px] px-[clamp(20px,5.56vw,80px)] pb-[4px] pt-[2px] min-[420px]:pb-[6px] min-[420px]:pt-[4px] min-[1000px]:pb-[clamp(8px,0.8vw,16px)] min-[1000px]:pt-[clamp(8px,0.95vw,14px)]">
               <ul className="ee-hero-stats m-0 grid list-none grid-cols-2 p-0 min-[600px]:max-[999px]:grid-cols-3">
                 {STATS.map((s, i) => {
                   const on = hover === i
@@ -301,7 +368,7 @@ export default function HeroTruthLeads() {
                     <li
                       key={s.label}
                       className={`ee-hero-stat flex border-white/[0.18] min-[1000px]:my-[clamp(6px,0.6vw,12px)] ${dividerClasses(i)}`}
-                      style={{ animationDelay: `${BAND_START + 360 + i * COUNT_STAGGER}ms` }}
+                      style={{ animationDelay: `${CARD_DELAY[i]}ms` }}
                     >
                       <Link
                         href={s.href}
@@ -310,11 +377,11 @@ export default function HeroTruthLeads() {
                         onMouseLeave={() => setHover(-1)}
                         onFocus={() => setHover(i)}
                         onBlur={() => setHover(-1)}
-                        className="relative flex flex-1 flex-col items-center justify-start gap-[3px] px-[6px] py-[10px] text-center text-white no-underline outline-offset-[-3px] transition-[background,opacity] duration-[400ms] hover:text-white min-[420px]:gap-[6px] min-[420px]:px-[8px] min-[420px]:py-[16px] min-[600px]:px-[12px] min-[600px]:py-[18px] min-[1000px]:gap-[clamp(2px,0.15vw,4px)] min-[1000px]:py-[clamp(6px,0.8vw,14px)]"
-                        style={{ opacity: dim ? 0.6 : 1, background: on ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0)' }}
+                        className="relative flex flex-1 flex-col items-center justify-start gap-[3px] px-[6px] py-[10px] text-center text-white no-underline outline-offset-[-3px] transition-opacity duration-[400ms] hover:text-white min-[420px]:gap-[6px] min-[420px]:px-[8px] min-[420px]:py-[16px] min-[600px]:px-[12px] min-[600px]:py-[18px] min-[1000px]:gap-[clamp(2px,0.15vw,4px)] min-[1000px]:py-[clamp(6px,0.8vw,14px)]"
+                        style={{ opacity: dim ? 0.6 : 1 }}
                       >
                         <strong
-                          className="whitespace-nowrap leading-none text-brand-gold text-[26px] min-[420px]:text-[28px] min-[600px]:text-[32px] min-[1000px]:text-[clamp(30px,3.2vw,62px)]"
+                          className="grid justify-items-center whitespace-nowrap leading-none text-brand-gold text-[26px] min-[420px]:text-[28px] min-[600px]:text-[32px] min-[1000px]:text-[clamp(30px,3.2vw,62px)]"
                           style={{
                             fontFamily: "'Arial Black','Arial Bold',Arial,sans-serif",
                             fontWeight: 900,
@@ -324,7 +391,16 @@ export default function HeroTruthLeads() {
                             transition: 'transform .5s cubic-bezier(.2,.8,.2,1), text-shadow .5s ease',
                           }}
                         >
-                          {formatStat(s, i, countT)}
+                          {/* Holds the final width so the row doesn't shift while counting */}
+                          <span aria-hidden="true" className="invisible [grid-area:1/1]">
+                            {s.final}
+                          </span>
+                          <span
+                            className={`[grid-area:1/1] justify-self-end ${s.text ? 'ee-hero-word inline-block' : ''}`}
+                            style={s.text ? { animationDelay: `${CARD_DELAY[i]}ms` } : undefined}
+                          >
+                            {formatStat(s, i, countT)}
+                          </span>
                         </strong>
                         <span className="max-w-[150px] whitespace-normal text-[13px] font-normal leading-[1.3] text-white [text-wrap:balance] min-[600px]:text-[14px] min-[1000px]:max-w-none min-[1000px]:whitespace-pre-line ee-hero-label">
                           {s.lines ?? s.label}

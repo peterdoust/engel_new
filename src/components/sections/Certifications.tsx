@@ -42,7 +42,7 @@ export default function Certifications() {
   ]
 
   return (
-    <section className="relative py-16 md:py-24 bg-primary-950 overflow-hidden">
+    <section id="certifications" className="scroll-mt-[var(--hdr)] relative py-16 md:py-24 bg-primary-950 overflow-hidden">
       {/* Subtle texture */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
