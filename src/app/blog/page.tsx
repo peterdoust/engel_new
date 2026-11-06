@@ -99,7 +99,7 @@ export default function BlogPage() {
       "url": "https://engelandengel.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg"
+        "url": "https://engelandengel.com/images/brand/ee-logo-horizontal.png"
       }
     },
     "blogPost": [featuredPost, ...blogPosts].map(post => ({
@@ -133,7 +133,7 @@ export default function BlogPage() {
         <meta property="og:url" content="https://engelandengel.com/blog" />
         <meta property="og:title" content="The Forensic Accounting Perspective | Expert Insights & Analysis" />
         <meta property="og:description" content="Expert forensic accounting insights, fraud investigation techniques, and litigation support strategies from certified professionals." />
-        <meta property="og:image" content="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg" />
+        <meta property="og:image" content="https://engelandengel.com/images/og-image.jpg" />
         <meta property="og:site_name" content="Engel & Engel LLP" />
 
         {/* Twitter */}
@@ -141,7 +141,7 @@ export default function BlogPage() {
         <meta property="twitter:url" content="https://engelandengel.com/blog" />
         <meta property="twitter:title" content="The Forensic Accounting Perspective | Expert Insights & Analysis" />
         <meta property="twitter:description" content="Expert forensic accounting insights, fraud investigation techniques, and litigation support strategies from certified professionals." />
-        <meta property="twitter:image" content="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg" />
+        <meta property="twitter:image" content="https://engelandengel.com/images/og-image.jpg" />
 
         {/* Additional SEO */}
         <meta name="theme-color" content="#293995" />

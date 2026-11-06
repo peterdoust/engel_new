@@ -104,7 +104,7 @@ export default function TeamPage() {
         {/* ... existing hero code ... */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/team-2.jpg"
+            src="/images/team-hero-2026.jpg"
             alt="Expert Team"
             fill
             className="object-cover object-[center_top] md:object-[center_-40px] lg:object-[0_-170px]"

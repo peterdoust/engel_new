@@ -53,7 +53,7 @@ export default function RafflePage() {
               {/* Background image */}
               <div className="absolute inset-0">
                 <Image
-                  src="https://engelandengel.com/wp-content/uploads/2022/02/forensic-accounting-los-angeles-scaled.jpg"
+                  src="/images/Forensic-Accounting-Firm-Los-Angeles-1.jpg"
                   alt=""
                   fill
                   className="object-cover opacity-20"
