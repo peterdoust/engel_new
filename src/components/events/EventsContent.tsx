@@ -85,9 +85,9 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
 
                                     {/* Date Badge */}
                                     <div className="absolute top-6 left-6 z-30 flex flex-col items-center justify-center w-16 h-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl">
-                                        <span className="text-2xl font-bold text-white leading-none">{new Date(event.date).getDate()}</span>
+                                        <span className="text-2xl font-bold text-white leading-none">{new Date(event.date + 'T00:00:00').getDate()}</span>
                                         <span className="text-[10px] font-black uppercase tracking-widest text-[#D4AF37] mt-1">
-                                            {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                                            {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                                         </span>
                                     </div>
 
@@ -120,7 +120,7 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                     <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b border-slate-100">
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Location</p>
-                                            <p className="text-sm font-semibold text-slate-700 line-clamp-1">{event.location}</p>
+                                            <p className="text-sm font-semibold text-slate-700 line-clamp-2 sm:line-clamp-1">{event.location}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Schedule</p>
@@ -165,9 +165,9 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                         className="group flex flex-col md:flex-row md:items-center gap-8 p-6 rounded-2xl hover:bg-slate-50 transition-colors duration-300 border border-transparent hover:border-slate-100"
                                     >
                                         <div className="md:w-32 flex flex-col items-center justify-center text-center pb-6 md:pb-0 md:border-r border-slate-200">
-                                            <span className="text-3xl font-serif italic text-[#D4AF37]">0{new Date(event.date).getDate()}</span>
+                                            <span className="text-3xl font-serif italic text-[#D4AF37]">{String(new Date(event.date + 'T00:00:00').getDate()).padStart(2, '0')}</span>
                                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                                {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                                                {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                                             </span>
                                         </div>
 

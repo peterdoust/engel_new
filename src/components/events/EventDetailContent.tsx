@@ -10,8 +10,9 @@ interface EventDetailContentProps {
 }
 
 export default function EventDetailContent({ event }: EventDetailContentProps) {
-    const eventStartDate = new Date(event.date)
-    const eventEndDate = event.endDate ? new Date(event.endDate) : eventStartDate
+    // 'YYYY-MM-DD' alone parses as UTC midnight, which shows the previous day in US time zones
+    const eventStartDate = new Date(event.date + 'T00:00:00')
+    const eventEndDate = event.endDate ? new Date(event.endDate + 'T00:00:00') : eventStartDate
 
     const heroRef = useRef(null);
     const { scrollYProgress } = useScroll({

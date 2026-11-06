@@ -26,6 +26,11 @@ export default function EventCalendar({ events }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [view, setView] = useState<'month' | 'list'>('month')
 
+  // Phones: start in list view; the month grid is too cramped to read there
+  React.useEffect(() => {
+    if (window.matchMedia('(max-width: 639px)').matches) setView('list')
+  }, [])
+
   // Get the first day of the month
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
   const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
@@ -257,9 +262,9 @@ export default function EventCalendar({ events }: EventCalendarProps) {
                   className="group flex flex-col md:flex-row md:items-center gap-6 p-4 rounded-xl border border-slate-100 hover:bg-slate-50 transition-all duration-300"
                 >
                   <div className="w-20 text-center border-r border-slate-100 pr-6">
-                    <span className="text-xl font-serif italic text-[#D4AF37]">0{new Date(event.date).getDate()}</span>
+                    <span className="text-xl font-serif italic text-[#D4AF37]">{String(new Date(event.date + 'T00:00:00').getDate()).padStart(2, '0')}</span>
                     <span className="block text-[9px] font-black uppercase tracking-widest text-slate-400 mt-0.5">
-                      {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                      {new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })}
                     </span>
                   </div>
 
