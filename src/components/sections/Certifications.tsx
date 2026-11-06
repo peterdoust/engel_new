@@ -57,10 +57,10 @@ export default function Certifications() {
           <div className="h-px w-24 bg-[#D4AF37]/30 mx-auto" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-16 max-w-6xl mx-auto items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-12 gap-y-10 sm:gap-y-16 max-w-6xl mx-auto items-center justify-items-center">
           {certifications.map((cert, index) => (
-            <div key={index} className="flex flex-col items-center group transition-all duration-700 hover:-translate-y-4">
-              <div className="relative w-48 h-48 md:w-60 md:h-60 transition-all duration-700 group-hover:drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
+            <div key={index} className="flex w-full min-w-0 flex-col items-center group transition-all duration-700 hover:-translate-y-4">
+              <div className="relative aspect-square w-full max-w-[192px] md:max-w-none md:w-60 md:h-60 transition-all duration-700 group-hover:drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
                 <Image
                   src={cert.image}
                   alt={cert.alt}
@@ -70,7 +70,7 @@ export default function Certifications() {
                 />
               </div>
               <span className="mt-4 text-xl md:text-2xl font-semibold tracking-wide uppercase text-white/80 group-hover:text-[#D4AF37] transition-colors duration-700">{cert.name}</span>
-              <span className="mt-1 text-base md:text-lg text-white text-center leading-tight">{cert.fullName}</span>
+              <span className="mt-1 text-sm sm:text-base md:text-lg text-white text-center leading-tight">{cert.fullName}</span>
             </div>
           ))}
         </div>

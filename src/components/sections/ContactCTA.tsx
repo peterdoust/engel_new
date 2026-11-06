@@ -166,7 +166,7 @@ export default function ContactCTA() {
                             {member.direct}
                           </TrackedPhoneLink>
                         </p>
-                        <p className="truncate text-white font-semibold">
+                        <p className="text-white font-semibold [overflow-wrap:anywhere]">
                           <span className="">EMAIL: </span>
                           <a href={`mailto:${member.email}`} className="text-white/80 hover:text-[#D4AF37] transition-colors duration-300">{member.email}</a>
                         </p>
@@ -260,13 +260,6 @@ export default function ContactCTA() {
                       rows={5}
                       className="w-full px-4 py-3.5 bg-[#f8fbff] border border-primary-950/40 rounded-md focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10 outline-none transition-all text-primary-950 text-sm placeholder:text-primary-950/30 resize-none"
                     />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-semibold text-primary-950 uppercase tracking-[0.15em] mb-2">Google reCAPTCHA</label>
-                    <div className="w-full h-20 border border-primary-950/40 bg-[#f8fbff] flex items-center rounded-md justify-center text-sm text-primary-950/40">
-                      reCAPTCHA widget placeholder
-                    </div>
                   </div>
 
                   <Button
