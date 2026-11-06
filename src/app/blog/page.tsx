@@ -185,7 +185,7 @@ export default function BlogPage() {
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-950 mb-10 tracking-tight">Featured Article</h2>
-            <Card className="overflow-hidden shadow-lg border border-slate-100">
+            <Card padding="none" className="overflow-hidden shadow-lg border border-slate-100">
               <div className="md:flex">
                 <div className="md:w-1/2 relative h-48 md:h-auto">
                   <Image
@@ -200,7 +200,7 @@ export default function BlogPage() {
                     <div className="text-xs opacity-90 mt-2">{featuredPost.readTime}</div>
                   </div>
                 </div>
-                <div className="md:w-1/2 p-8">
+                <div className="md:w-1/2 p-6 md:p-8">
                   <h3 className="text-2xl font-bold mb-4 text-primary-950 tracking-tight">
                     {featuredPost.title}
                   </h3>
@@ -209,7 +209,7 @@ export default function BlogPage() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {featuredPost.tags.map((tag, index) => (
-                      <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-primary-950/5 text-primary-950/60 px-2.5 py-1">
+                      <span key={index} className={`${index >= 3 ? 'hidden sm:inline-block' : ''} text-[11px] font-bold tracking-wider uppercase bg-primary-950/5 text-primary-950/70 px-2.5 py-1`}>
                         {tag}
                       </span>
                     ))}
@@ -217,7 +217,7 @@ export default function BlogPage() {
                   <div className="flex items-center justify-between mb-6">
                     <div className="text-sm text-slate-600">
                       <div className="font-semibold text-primary-950">{featuredPost.author}</div>
-                      <div>{featuredPost.publishDate} • {featuredPost.readTime}</div>
+                      <div>{new Date(featuredPost.publishDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {featuredPost.readTime}</div>
                     </div>
                   </div>
                   <Link href={`/blog/${featuredPost.slug}`}>
@@ -288,7 +288,7 @@ export default function BlogPage() {
                       </CardDescription>
                       <div className="flex flex-wrap gap-1 mb-4">
                         {post.tags.slice(0, 3).map((tag, index) => (
-                          <span key={index} className="text-[9px] font-bold tracking-wider uppercase bg-slate-50 text-slate-400 px-2 py-0.5 border border-slate-100">
+                          <span key={index} className="text-[10px] font-bold tracking-wider uppercase bg-slate-50 text-slate-500 px-2 py-0.5 border border-slate-100">
                             {tag}
                           </span>
                         ))}
@@ -296,7 +296,7 @@ export default function BlogPage() {
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                         <div className="text-sm text-slate-600">
                           <div className="font-semibold text-primary-950 text-xs">{post.author}</div>
-                          <div className="text-xs">{post.publishDate} • {post.readTime}</div>
+                          <div className="text-xs">{new Date(post.publishDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {post.readTime}</div>
                         </div>
                         <span className="flex items-center gap-2 text-gold-700 font-bold text-xs group-hover:gap-4 transition-all duration-300">
                           Read
