@@ -100,14 +100,14 @@ export default function TeamPage() {
       <Header />
 
       {/* Hero Section with Cinematic Background */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[100vh] flex items-center pt-40 pb-0 overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[100vh] flex items-end lg:items-center pt-40 pb-8 md:pb-14 lg:pb-0 overflow-hidden">
         {/* ... existing hero code ... */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/team-hero-2026.jpg"
             alt="Expert Team"
             fill
-            className="object-cover object-[center_top] md:object-[center_-40px] lg:object-[0_-170px]"
+            className="object-cover object-[center_top] lg:object-[center_30%]"
             priority
           />
           {/* Deep Blue Overlay matching screenshot */}
@@ -118,7 +118,7 @@ export default function TeamPage() {
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto text-center pt-24 lg:pt-48">
+          <div className="max-w-4xl mx-auto text-center lg:pt-48">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

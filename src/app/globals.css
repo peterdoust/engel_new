@@ -206,7 +206,14 @@
   transform: rotateY(180deg);
 }
 
-.group:hover .group-hover\:rotate-y-180 {
+/* Hover-flip only on devices with a real hover (mouse); touch devices flip on tap via .is-flipped */
+@media (hover: hover) {
+  .group:hover .group-hover\:rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+.is-flipped .group-hover\:rotate-y-180 {
   transform: rotateY(180deg);
 }
 
