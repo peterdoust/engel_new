@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import Image from 'next/image'
+import NewsletterForm from '@/components/blog/NewsletterForm'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 // Real blog posts from engelandengel.com integrated with SEO optimization
@@ -327,16 +328,7 @@ export default function BlogPage() {
             <p className="text-lg mb-10 text-white/60 font-light leading-relaxed">
               Get the latest insights on forensic accounting, fraud investigation, and expert witness testimony
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-4 bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
-              />
-              <button className="px-8 py-4 bg-[#D4AF37] text-[#1D2653] font-bold text-sm tracking-wider uppercase hover:bg-white transition-colors duration-300">
-                Subscribe
-              </button>
-            </div>
+            <NewsletterForm />
           </div>
         </div>
       </section>
