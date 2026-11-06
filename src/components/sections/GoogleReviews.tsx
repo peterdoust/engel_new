@@ -182,7 +182,8 @@ export default function GoogleReviews() {
           {/* Navigation Arrows */}
           <button
             onClick={() => { prev(); pauseAutoplay(); }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
+            aria-label="Previous review"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 hidden lg:flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -191,7 +192,8 @@ export default function GoogleReviews() {
 
           <button
             onClick={() => { next(); pauseAutoplay(); }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
+            aria-label="Next review"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-14 z-10 w-11 h-11 rounded-full border-2 border-primary-950/20 hidden lg:flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] text-primary-950/40 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

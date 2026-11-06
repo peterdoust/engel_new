@@ -66,7 +66,7 @@ export default function ExpertiseGridV4() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-[15px] font-bold uppercase tracking-[0.12em] leading-tight text-center text-primary-950 group-hover:text-white transition-colors duration-500">
+                    <h3 className="text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center text-primary-950 group-hover:text-white transition-colors duration-500">
                       {area.title}
                     </h3>
 
