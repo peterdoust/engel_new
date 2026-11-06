@@ -16,3 +16,13 @@ client-review-documents/
 *.spec.ts
 *.spec.tsx
 __tests__/
+
+# Client docs and local database exports
+*.docx
+*.doc
+*.xlsx
+*.pptx
+CLIENT_REVIEW_*.txt
+DB/
+.env
+.env*.local
