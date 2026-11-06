@@ -131,8 +131,8 @@ export default function EmploymentDamagesCalculatorPage() {
         <div className="container-custom py-8">
           <div className="max-w-4xl mx-auto">
             {/* Calculator Section */}
-            <Card className="mb-8 shadow-lg border-0 bg-white">
-              <CardHeader className="bg-gradient-to-r from-[#1d2653] to-[#293995] text-white rounded-t-lg">
+            <Card padding="none" className="mb-8 shadow-lg border-0 bg-white">
+              <CardHeader className="bg-gradient-to-r from-[#1d2653] to-[#293995] text-white rounded-t-lg p-5 sm:p-6">
                 <CardTitle className="text-2xl font-bold flex items-center text-white">
                   <Briefcase className="w-6 h-6 mr-3 text-[#d4af37]" strokeWidth={1.5} aria-hidden="true" />
                   Employment Damages Calculator
@@ -141,7 +141,7 @@ export default function EmploymentDamagesCalculatorPage() {
                   Calculate back pay, front pay, and benefits losses in employment litigation
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="p-5 sm:p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Input Form */}
                   <div className="space-y-6">

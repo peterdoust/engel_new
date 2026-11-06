@@ -154,7 +154,7 @@ export default function BlogPost({ params }: Props) {
         <Header />
 
         {/* Hero Banner with Full Image - Extends Behind Header */}
-        <section className="relative h-[600px] lg:h-[700px] overflow-hidden">
+        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-end pt-36 overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src={post.image}
@@ -166,8 +166,8 @@ export default function BlogPost({ params }: Props) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
           </div>
 
-          <div className="relative z-10 h-full flex items-end">
-            <div className="container mx-auto px-6 pb-16">
+          <div className="relative z-10 w-full">
+            <div className="container mx-auto px-6 pb-12 lg:pb-16">
               <div className="max-w-4xl mx-auto">
                 {/* Breadcrumb Navigation - Positioned over image */}
                 <nav aria-label="Breadcrumb" className="mb-8 hidden">
@@ -185,16 +185,16 @@ export default function BlogPost({ params }: Props) {
                     {post.category}
                   </span>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   {post.title}
                 </h1>
-                <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed max-w-4xl">
+                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed max-w-4xl">
                   {post.description}
                 </p>
                 <div className="flex flex-wrap items-center gap-6 text-white/90">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white font-bold">
-                      {post.author.split(' ').map(n => n[0]).join('')}
+                      {post.author.split(',')[0].trim().split(/\s+/).filter(Boolean).map(n => n[0]).slice(0, 2).join('').toUpperCase()}
                     </div>
                     <div>
                       <div className="font-medium text-white">{post.author}</div>

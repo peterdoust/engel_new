@@ -99,8 +99,9 @@ export default function EventsContent({ featuredEvents, otherEvents, upcomingEve
                                     </div>
 
                                     {/* Placeholder Background */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center">
-                                        <span className="text-[120px] opacity-10 select-none">🎯</span>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#1d2653] to-[#11162d] flex items-end justify-end p-5 sm:p-6">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src="/images/brand/ee-logo-horizontal-white.png" alt="" aria-hidden="true" className="w-1/2 max-w-[200px] opacity-[0.15] select-none" />
                                     </div>
                                 </div>
 
