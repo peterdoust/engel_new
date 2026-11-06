@@ -67,7 +67,7 @@ const publicationsDropdown: NavLink[] = [
 ]
 
 const NAV: NavItem[] = [
-  { label: 'About', href: '/about', items: aboutDropdown },
+  { label: 'About', href: '/team', items: aboutDropdown },
   { label: 'Cases', href: '/cases' },
   { label: 'Publications', href: '/publications', items: publicationsDropdown },
   { label: 'Services', href: '/services', items: services },
