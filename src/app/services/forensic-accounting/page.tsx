@@ -379,8 +379,8 @@ export default function ForensicAccountingPage() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
                 <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
-                  Forensic Accounting <br />
-                  <span className="font-serif italic text-[#D4AF37] font-medium">Services</span>
+                  Forensic <br />
+                  <span className="font-serif italic text-[#D4AF37] font-medium">Accounting</span>
                 </h1>
                 <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
               </motion.div>
