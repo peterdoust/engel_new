@@ -36,8 +36,9 @@ export default function CareersPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const chosen = e.target.files[0];
-      if (chosen.size > 10 * 1024 * 1024) {
-        setSubmitError('Resume exceeds the 10MB size limit.');
+      // Vercel rejects request bodies over 4.5MB, so keep resumes under 4MB
+      if (chosen.size > 4 * 1024 * 1024) {
+        setSubmitError('Resume is over the 4MB size limit. Please upload a smaller file.');
         return;
       }
       setSubmitError(null);
@@ -245,7 +246,7 @@ export default function CareersPage() {
                   )}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="block text-[10px] font-bold text-[#1D2653] uppercase tracking-[0.3em] mb-2">Full Name</label>
+                      <label htmlFor="name" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Full Name</label>
                       <input
                         type="text"
                         id="name"
@@ -259,7 +260,7 @@ export default function CareersPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="block text-[10px] font-bold text-[#1D2653] uppercase tracking-[0.3em] mb-2">Email Address</label>
+                      <label htmlFor="email" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Email Address</label>
                       <input
                         type="email"
                         id="email"
@@ -275,7 +276,7 @@ export default function CareersPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-[10px] font-bold text-[#1D2653] uppercase tracking-[0.3em] mb-2">Phone Number</label>
+                    <label htmlFor="phone" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Phone Number</label>
                     <input
                       type="tel"
                       id="phone"
@@ -289,7 +290,7 @@ export default function CareersPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="block text-[10px] font-bold text-[#1D2653] uppercase tracking-[0.3em] mb-1">Brief Introduction</label>
+                    <label htmlFor="message" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-1">Brief Introduction</label>
                     <textarea
                       id="message"
                       name="message"
@@ -303,9 +304,11 @@ export default function CareersPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-[10px] font-bold text-[#1D2653] uppercase tracking-[0.3em] mb-2">Attach Resume (PDF)</label>
+                    <label htmlFor="resume" className="block text-[11px] font-bold text-[#1D2653] uppercase tracking-[0.25em] mb-2">Attach Resume (PDF or Word)</label>
                     <div className="relative group">
                       <input
+                        id="resume"
+                        name="resume"
                         type="file"
                         accept=".pdf,.doc,.docx"
                         onChange={handleFileChange}
@@ -318,9 +321,9 @@ export default function CareersPage() {
                           </svg>
                         </div>
                         <p className="text-slate-600 font-bold uppercase tracking-widest text-xs">
-                          {file ? file.name : 'Click to upload or drag and drop'}
+                          {file ? file.name : <><span className="[@media(hover:hover)]:hidden">Tap to upload your resume</span><span className="hidden [@media(hover:hover)]:inline">Click to upload or drag and drop</span></>}
                         </p>
-                        <p className="text-[10px] text-slate-400 mt-2 uppercase tracking-tight">PDF, DOC up to 10MB</p>
+                        <p className="text-[11px] text-slate-500 mt-2 uppercase tracking-tight">PDF or Word, up to 4MB</p>
                       </div>
                     </div>
                   </div>

@@ -3,7 +3,7 @@ import clientPromise from '@/lib/mongodb'
 import nodemailer from 'nodemailer'
 
 const ADMIN_EMAIL = ['Peter@globalcreativestudios.com', 'info@engelandengel.com']
-const MAX_RESUME_BYTES = 10 * 1024 * 1024 // 10MB
+const MAX_RESUME_BYTES = 4 * 1024 * 1024 // 4MB (Vercel caps request bodies at 4.5MB)
 
 function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for')
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     if (resume && typeof (resume as any).arrayBuffer === 'function' && resume.size > 0) {
       if (resume.size > MAX_RESUME_BYTES) {
-        return NextResponse.json({ error: 'Resume exceeds the 10MB size limit.' }, { status: 400 })
+        return NextResponse.json({ error: 'Resume is over the 4MB size limit.' }, { status: 400 })
       }
       const ab = await resume.arrayBuffer()
       resumeBuffer = Buffer.from(ab)
