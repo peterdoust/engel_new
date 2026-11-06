@@ -124,16 +124,19 @@ export default function NewsroomPage() {
         </section>
       )}
 
+      {/* Filter + list share a wrapper so the sticky filter stops at the end of the list */}
+      <div>
       {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30">
+      <section className="py-3 sm:py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30">
         <div className="container-custom">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-wrap gap-2">
+            <div className="flex gap-2 overflow-x-auto sm:flex-wrap sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-1 px-1">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  aria-pressed={activeCategory === cat}
+                  className={`shrink-0 px-4 sm:px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                     activeCategory === cat
                       ? 'bg-primary-950 text-white'
                       : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
@@ -242,6 +245,7 @@ export default function NewsroomPage() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* CTA */}
       <section className="relative py-20 bg-primary-950 overflow-hidden">
