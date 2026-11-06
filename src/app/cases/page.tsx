@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'fra
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import BackToTop from '@/components/ui/BackToTop';
 
 // ─────────────────────────────────────────────
 // Data
@@ -37,7 +38,7 @@ const cases = [
     description: 'Testified in an arbitration on behalf of plaintiff as to economic damages in excess of $100 million. Plaintiff, a buyer of an $80 million shopping center, alleged that seller provided buyer with misleading financial information. Arbitrator awarded plaintiff rescission damages in excess of $100 million.',
   },
   {
-    title: 'Breach Of Contract',
+    title: 'Breach of Contract',
     result: 'Jury Award of $1.3 Million',
     description: 'Testified as to damages in a jury trial on behalf of plaintiff, a U.S. window manufacturer and distributor. Plaintiff alleged breach of contract in connection with the construction of a mansion in Moscow, Russia. Jury awarded plaintiff $1.3 million in damages.',
   },
@@ -158,8 +159,8 @@ export default function CasesPage() {
                     className="group relative bg-white p-8 md:p-10 md:pb-8 pb-8 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.08)] border border-[#293995] border-t-4 hover:shadow-[0_20px_60px_-20px_rgba(41, 57, 149,0.15)] transition-all duration-500 flex flex-col"
                   >
                     <div className="mb-8">
-                      <h3 className="text-[1.75rem] font-bold text-[#1D2653] tracking-tight leading-tight mb-5 group-hover:text-[#293995] transition-colors duration-300 relative inline-flex items-center gap-3">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] shrink-0" />
+                      <h3 className="text-[1.5rem] sm:text-[1.75rem] font-bold text-[#1D2653] tracking-tight leading-tight mb-5 group-hover:text-[#293995] transition-colors duration-300 relative inline-flex items-start gap-3">
+                        <span className="w-2.5 h-2.5 mt-[0.45em] rounded-full bg-[#D4AF37] shrink-0" />
                         {case_.title}
                         <span className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent transition-all duration-500 group-hover:w-full" />
                       </h3>
@@ -182,6 +183,7 @@ export default function CasesPage() {
           </div>
         </section>
 
+        <BackToTop />
         <Footer />
       </main>
 
