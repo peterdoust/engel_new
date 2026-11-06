@@ -62,6 +62,12 @@ const nextConfig = {
         permanent: true,
       },
       {
+        // Temporary (307) so browsers don't cache it if the About page comes back
+        source: '/about',
+        destination: '/team',
+        permanent: false,
+      },
+      {
         source: '/services',
         destination: '/services/forensic-accounting',
         permanent: true,
