@@ -336,15 +336,15 @@ export default function HeroTruthLeads() {
         {/* Headline */}
         <div className="relative mx-auto w-full max-w-[1920px] flex-1 px-[clamp(20px,5.56vw,80px)] pb-[clamp(20px,4vh,48px)] pt-[28px] min-[700px]:pt-[clamp(24px,22svh,260px)] min-[900px]:pt-[clamp(24px,min(3.78vw,7vh),76px)]">
           <h1 id="hero-title" className="m-0 flex flex-col items-start uppercase text-brand-midnight">
-            <span ref={lineRefs[0]} className="ee-hero-line ee-hero-l1 font-medium leading-none tracking-[-0.03em] text-[clamp(26px,calc(3.37vw-2px),62px)]">
+            <span ref={lineRefs[0]} className="ee-hero-line ee-hero-l1 font-medium leading-none tracking-[-0.03em] text-[clamp(25px,calc(3.37vw-3px),61px)]">
               Wherever the
             </span>
-            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[clamp(40px,calc(5.05vw-2px),94px)]">
+            <span ref={lineRefs[1]} className="ee-hero-line ee-hero-l2 -mt-[0.045em] font-medium leading-none tracking-[-0.03em] text-[clamp(39px,calc(5.05vw-3px),93px)]">
               Truth <em className="italic">Leads.</em>
             </span>
             <span
               ref={lineRefs[2]}
-              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] max-w-[200px] font-normal normal-case leading-[1.25] tracking-normal min-[700px]:max-w-none text-[clamp(15px,calc(1.75vw-2px),33px)]"
+              className="ee-hero-line ee-hero-l3 ml-[0.44vw] mt-[0.39em] max-w-[200px] font-normal normal-case leading-[1.25] tracking-normal min-[700px]:max-w-none text-[clamp(14px,calc(1.75vw-3px),32px)]"
             >
               Nationally Recognized Forensic Accountants
             </span>
