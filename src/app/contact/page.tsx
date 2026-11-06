@@ -385,12 +385,13 @@ export default function ContactPage() {
                   width="100%"
                   height="100%"
                   style={{ border: 0, opacity: 0.6 }}
+                  title="Map of the Engel & Engel office at 350 S Grand Ave, Los Angeles"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-              <div className="absolute top-10 left-10 z-10 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-xs border border-white">
+              <div className="absolute left-4 right-4 bottom-4 sm:bottom-auto sm:right-auto sm:top-10 sm:left-10 z-10 bg-white/90 backdrop-blur-md p-4 sm:p-6 rounded-2xl shadow-xl sm:max-w-xs border border-white">
                 <h4 className="text-lg font-bold text-slate-900 mb-2">Visit Our Office</h4>
                 <p className="text-sm text-slate-500 font-light leading-relaxed">
                   Centrally located in Downtown Los Angeles at <span className="text-slate-900 font-medium">350 S Grand Ave.</span> Validated parking available for all clients.
