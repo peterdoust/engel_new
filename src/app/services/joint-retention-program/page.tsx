@@ -255,6 +255,10 @@ export default function JointRetentionProgramPage() {
           </div>
         </section>
 
+        {/* sticky-scope: keeps the mobile section bar from sticking over the CTA and footer */}
+
+        <div>
+
         {/* ══════════ MOBILE/TABLET STICKY NAV ══════════ */}
         <MobileNav sidebarSections={sidebarSections} />
 
@@ -298,6 +302,8 @@ export default function JointRetentionProgramPage() {
               ))}
             </div>
           </div>
+        </div>
+
         </div>
 
         {/* ══════════ CONTACT CTA ══════════ */}
