@@ -430,7 +430,7 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 className="lg:col-span-5"
               >
-                <div className="relative group mx-auto lg:mx-0">
+                <div className="relative group mx-auto lg:mx-0 max-w-[420px] lg:max-w-none">
                   {/* Decorative Frame */}
                   <div className="absolute -inset-4 border border-[#D4AF37]/20 rounded-2xl group-hover:border-[#D4AF37]/40 transition-colors duration-700" />
                   <div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-[#D4AF37] rounded-tr-lg" />

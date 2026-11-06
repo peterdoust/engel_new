@@ -59,10 +59,10 @@ export default function AboutPage() {
               <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-6 block">Established 1994</span>
                 <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter text-white">
-                  Excellence in <br />
-                  <span className="font-serif italic text-[#D4AF37] font-medium text-4xl md:text-6xl lg:text-7xl">Forensics</span>
+                  Excellence in
+                  <span className="block mt-3 md:mt-4 leading-none font-serif italic text-[#D4AF37] font-medium text-4xl md:text-6xl lg:text-7xl">Forensics</span>
                 </h1>
-                <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16">
+                <p className="text-white/75 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16">
                   For over three decades, Engel & Engel has provided authoritative forensic accounting and expert witness services to top law firms and corporations nationwide.
                 </p>
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
                   {stats.map((stat) => (
                     <div key={stat.label}>
                       <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">{stat.value}</div>
-                      <div className="text-[10px] text-slate-500 tracking-widest uppercase font-bold">{stat.label}</div>
+                      <div className="text-[11px] text-white/70 tracking-widest uppercase font-bold">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -171,7 +171,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-12 gap-y-16 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 sm:gap-x-12 gap-y-10 sm:gap-y-16 max-w-6xl mx-auto">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={index}
@@ -181,7 +181,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="flex flex-col items-center group cursor-default"
                 >
-                  <div className="relative w-full aspect-square max-w-[140px] mb-6 grayscale hover:grayscale-0 transition-all duration-700 p-4 border border-transparent hover:border-slate-200 rounded-3xl hover:bg-white hover:shadow-xl">
+                  <div className="relative w-full aspect-square max-w-[140px] mb-4 sm:mb-6 [@media(hover:hover)]:grayscale hover:grayscale-0 transition-all duration-700 p-4 border border-transparent hover:border-slate-200 rounded-3xl hover:bg-white hover:shadow-xl">
                     <Image
                       src={cert.image}
                       alt={cert.fullName}
@@ -190,7 +190,7 @@ export default function AboutPage() {
                     />
                   </div>
                   <p className="text-sm font-bold text-[#293995] uppercase tracking-widest">{cert.name}</p>
-                  <p className="text-[10px] text-slate-400 text-center mt-1 font-bold tracking-tight px-2">{cert.fullName}</p>
+                  <p className="text-[11px] text-slate-500 text-center mt-1 font-bold tracking-tight px-2">{cert.fullName}</p>
                 </motion.div>
               ))}
             </div>
@@ -200,21 +200,21 @@ export default function AboutPage() {
         {/* ══════════ BIG FOUR EXPERIENCE ══════════ */}
         <section className="py-32 bg-white">
           <div className="container-custom">
-            <div className="bg-[#293995] rounded-[3rem] p-12 lg:p-24 text-white relative overflow-hidden group">
+            <div className="bg-[#293995] rounded-[2rem] sm:rounded-[3rem] p-7 sm:p-12 lg:p-24 text-white relative overflow-hidden group">
               {/* Decorative Glow */}
               <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 blur-[160px] rounded-full translate-x-1/2 -translate-y-1/2" />
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
                 <div>
                   <span className="text-xs font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-8 block">Global Perspective</span>
-                  <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-[1.1]">
+                  <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-[1.1] text-white">
                     Big Four <br />
                     <span className="font-serif italic text-[#D4AF37] font-medium">Forensic Experience</span>
                   </h2>
-                  <p className="text-slate-400 text-xl font-light leading-relaxed mb-6">
+                  <p className="text-white/75 text-lg sm:text-xl font-light leading-relaxed mb-6">
                     Our team brings extensive experience from major international accounting firms, providing the professional rigor and depth of knowledge expected in high-stakes litigation.
                   </p>
-                  <p className="text-slate-400 text-xl font-light leading-relaxed mb-12">
+                  <p className="text-white/75 text-lg sm:text-xl font-light leading-relaxed mb-12">
                     This background ensures that our clients receive the highest level of expert analysis, capable of withstanding the most demanding courtroom scrutiny.
                   </p>
                   <Link href="/services" className="inline-flex items-center gap-4 px-10 py-5 border-2 border-[#D4AF37] text-[#D4AF37] font-bold rounded-2xl hover:bg-[#D4AF37] hover:text-black transition-all">

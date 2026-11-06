@@ -62,11 +62,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/about',
-        destination: '/team',
-        permanent: true,
-      },
-      {
         source: '/services',
         destination: '/services/forensic-accounting',
         permanent: true,
