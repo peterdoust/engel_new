@@ -150,7 +150,7 @@ export default function CasesPage() {
               <AnimatePresence mode="popLayout">
                 {cases.map((case_, idx) => (
                   <motion.div
-                    key={case_.title}
+                    key={`${case_.title}-${idx}`}
                     layout
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
