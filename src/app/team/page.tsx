@@ -107,6 +107,8 @@ export default function TeamPage() {
             src="/images/team-hero-2026.jpg"
             alt="Expert Team"
             fill
+            sizes="100vw"
+            quality={90}
             className="object-cover object-[center_top] lg:object-[center_30%]"
             priority
           />
