@@ -121,7 +121,8 @@ export default function HeroTruthLeads() {
   const [hover, setHover] = useState(-1)
 
   // Gap (px) between the headline lines and the nearest of: the trail's glow, the lower deck
-  const clearance = (box: Box, bw: number, bh: number, lines: Rect[]) => {
+  // trailReach: how far (canvas units) the visible edge sits from the trail line.
+  const clearance = (box: Box, bw: number, bh: number, lines: Rect[], trailReach = 13) => {
     const u = box.w / ART_W
     const uy = box.h / ART_H
     let min = Infinity
@@ -137,7 +138,7 @@ export default function HeroTruthLeads() {
         }
       }
     }
-    check(trailPts.current!, 13 * u + 10) // half the glow stroke width (26) + margin
+    check(trailPts.current!, trailReach * u + 10) // default: half the glow stroke width (26) + margin
     check(DECK_PTS, 22) // keeps at least ~12px of sky between the text and the deck
     return min
   }
@@ -206,13 +207,16 @@ export default function HeroTruthLeads() {
     }
     if (!trailPts.current || !lines.length) return done(base)
 
-    const need = -10
+    // Desktop: keep ~30px of sky between the headline and the photo's yellow railing, which sits
+    // ~46 canvas units left of the trail line. Phones keep the original glow-only check.
+    const reach = desktop ? 46 : 13
+    const need = desktop ? 20 : -10
     let best = base
-    let bestC = clearance(base, bw, bh, lines)
+    let bestC = clearance(base, bw, bh, lines, reach)
     let found = bestC >= need
     const tryBox = (b: Box) => {
       if (found || b.y + b.h < fitH - 0.5) return
-      const c = clearance(b, bw, bh, lines)
+      const c = clearance(b, bw, bh, lines, reach)
       if (c > bestC) {
         best = b
         bestC = c
