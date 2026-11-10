@@ -109,7 +109,7 @@ export default function TeamPage() {
             fill
             sizes="100vw"
             quality={90}
-            className="object-cover object-[center_top] lg:object-[center_30%]"
+            className="object-cover object-[center_top] lg:object-[center_30%] [@media(min-width:1024px)_and_(min-aspect-ratio:2/1)]:object-[center_20%]"
             priority
           />
           {/* Deep Blue Overlay matching screenshot */}
