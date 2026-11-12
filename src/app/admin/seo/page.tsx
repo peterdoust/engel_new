@@ -5,7 +5,7 @@ import { useCurrentUser } from '../useCurrentUser'
 
 const TITLE_LIMIT = 60
 const DESCRIPTION_LIMIT = 160
-const SITE_ORIGIN = 'https://engelengel.com'
+const SITE_ORIGIN = 'https://engelandengel.com'
 
 type SeoPageType =
   | 'standard'

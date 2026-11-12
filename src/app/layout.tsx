@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://engelengel.com'),
+  metadataBase: new URL('https://engelandengel.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://engelengel.com',
+    url: 'https://engelandengel.com',
     title: 'Engel & Engel - Premier Forensic Accounting Firm in Los Angeles',
     description: 'Los Angeles\' premier forensic accounting firm with 30+ years of experience in complex business litigation and expert witness testimony.',
     siteName: 'Engel & Engel',
@@ -113,7 +113,7 @@ export default function RootLayout({
               "@type": "ProfessionalService",
               "name": "Engel & Engel",
               "description": "Premier forensic accounting firm specializing in fraud investigation, expert witness testimony, and business valuation services.",
-              "url": "https://engelengel.com",
+              "url": "https://engelandengel.com",
               "telephone": "+1-310-277-2220",
               "address": {
                 "@type": "PostalAddress",
