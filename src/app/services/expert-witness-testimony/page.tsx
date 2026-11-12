@@ -186,7 +186,7 @@ export default function ExpertWitnessTestimonyPage() {
       <main className="bg-white min-h-screen text-slate-900">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] flex items-center pt-24 md:pt-0 overflow-hidden bg-[#1D2653]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <motion.div
               style={{ y: y2, scale }}
@@ -209,7 +209,7 @@ export default function ExpertWitnessTestimonyPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Expert Witness <br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Testimony</span>
                 </h1>

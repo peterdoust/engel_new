@@ -168,7 +168,7 @@ function PublicationRequestForm() {
       <main>
         <Header />
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-[#1D2653] pt-[var(--hdr)]">
+        <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           {/* Parallax Background Decorations */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             {/* Glowing orbs */}
@@ -194,7 +194,7 @@ function PublicationRequestForm() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               >
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                   Request <br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Submitted Successfully</span>
                 </h1>
@@ -213,7 +213,7 @@ function PublicationRequestForm() {
       <Header />
 
       {/* ══════════ CINEMATIC HERO ══════════ */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-[#1D2653] pt-[var(--hdr)]">
+      <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
         {/* Parallax Background Decorations */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Glowing orbs */}
@@ -229,7 +229,7 @@ function PublicationRequestForm() {
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         </div>
 
-        <div className="container-custom relative z-10 w-full text-center py-12">
+        <div className="container-custom relative z-10 w-full text-center">
           <motion.div
             style={{ y: springY1, opacity }}
             className="max-w-4xl mx-auto"
@@ -239,12 +239,12 @@ function PublicationRequestForm() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                 Request <br />
                 <span className="font-serif italic text-[#D4AF37] font-medium">Publications</span>
               </h1>
               <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-6" />
-              <p className="mt-8 text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-light">
+              <p className="mt-5 text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-light">
                 Request access to our comprehensive research publications on forensic accounting,
                 economic damages, and expert witness testimony.
               </p>

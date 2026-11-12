@@ -39,7 +39,7 @@ export default function AboutPage() {
       <main className="bg-slate-50 min-h-screen">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#293995] text-white">
+        <section className="relative overflow-hidden text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-40 scale-105 animate-ken-burns"
@@ -58,19 +58,19 @@ export default function AboutPage() {
             >
               <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D4AF37] mb-6 block">Established 1994</span>
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.85] tracking-tighter text-white">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-5 leading-[0.85] tracking-tighter text-white">
                   Excellence in
-                  <span className="block mt-3 md:mt-4 leading-none font-serif italic text-[#D4AF37] font-medium text-4xl md:text-6xl lg:text-7xl">Forensics</span>
+                  <span className="block mt-3 md:mt-4 leading-none font-serif italic text-[#D4AF37] font-medium text-3xl md:text-4xl lg:text-5xl">Forensics</span>
                 </h1>
-                <p className="text-white/75 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-16">
+                <p className="text-white/75 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-8">
                   For over three decades, Engel & Engel has provided authoritative forensic accounting and expert witness services to top law firms and corporations nationwide.
                 </p>
 
                 {/* Vertical Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 py-12 border-y border-white/10 w-full mb-12">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 py-6 border-y border-white/10 w-full">
                   {stats.map((stat) => (
                     <div key={stat.label}>
-                      <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">{stat.value}</div>
+                      <div className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight">{stat.value}</div>
                       <div className="text-[11px] text-white/70 tracking-widest uppercase font-bold">{stat.label}</div>
                     </div>
                   ))}

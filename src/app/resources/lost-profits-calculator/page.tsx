@@ -97,13 +97,13 @@ export default function LostProfitsCalculatorPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-[var(--hdr)] bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-16">
+      <section className="text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Lost Profits <span className="text-[#d4af37]">Calculator</span>
             </h1>
-            <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-white/80 mb-0 max-w-3xl mx-auto">
               Calculate economic damages from lost business profits due to interruption or interference
             </p>
           </div>

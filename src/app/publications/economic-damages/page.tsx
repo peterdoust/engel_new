@@ -38,7 +38,7 @@ export default function EconomicDamagesPublications() {
       <Header />
 
       {/* HERO */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#1D2653]">
+      <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
 
         <div className="absolute inset-0 z-0 pointer-events-none">
 
@@ -69,7 +69,7 @@ export default function EconomicDamagesPublications() {
               transition={{ duration: 1.2 }}
             >
 
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white">
                 Economic <br />
                 <span className="font-serif italic text-[#D4AF37] font-medium">
                   Damages

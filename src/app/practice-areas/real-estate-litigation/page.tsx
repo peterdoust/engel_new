@@ -58,7 +58,7 @@ export default function RealEstateLitigationPage() {
       <main className=" min-h-screen">
 
         {/* ══════════ HERO ══════════ */}
-        <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+        <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <motion.div
               style={{ y: y2, scale }}
@@ -72,7 +72,7 @@ export default function RealEstateLitigationPage() {
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
-          <div className="container-custom relative z-10 w-full pb-20 pt-40">
+          <div className="container-custom relative z-10 w-full">
             <motion.div
               style={{ y: springY1, opacity }}
               className="max-w-5xl"
@@ -82,12 +82,12 @@ export default function RealEstateLitigationPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Practice Area</p>
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9]">
+                <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">Practice Area</p>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
                   Real Estate<br />
                   <span className="font-serif italic text-[#D4AF37] font-medium">Litigation</span>
                 </h1>
-                <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+                <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
               </motion.div>
             </motion.div>
           </div>

@@ -405,11 +405,11 @@ export default function TeamMemberPage({ params }: { params: { slug: string } })
 
       <main className="bg-white min-h-screen text-slate-900">
         {/* ══════════ PREMIUM HERO SECTION ══════════ */}
-        <section ref={heroRef} className="relative min-h-[500px] flex items-center pt-28 lg:pt-32 pb-12 overflow-hidden bg-[#1D2653]">
+        <section ref={heroRef} className="relative flex items-center pt-28 lg:pt-32 pb-12 overflow-hidden bg-[#293995]">
           {/* Architectural Background Elements */}
           <div className="absolute inset-0 z-0">
             {/* Main Cinematic Gradient matching Cases page */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#1D2653] via-[#1D2653] to-[#1d2653]/20" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#293995] via-[#293995] to-[#293995]/20" />
 
             {/* Glowing Orbs similar to Cases page */}
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 blur-[120px] rounded-full opacity-50" />

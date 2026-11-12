@@ -63,13 +63,13 @@ export default function ResourcesPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-[var(--hdr)] bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-        <div className="container-custom py-24">
+      <section className="text-white bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
               Financial <span className="text-[#d4af37]">Calculators</span>
             </h1>
-            <p className="text-xl lg:text-2xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl lg:text-2xl text-primary-100 mb-0 leading-relaxed max-w-3xl mx-auto">
               Professional-grade financial calculators for forensic accounting, litigation support, and business analysis
             </p>
           </div>

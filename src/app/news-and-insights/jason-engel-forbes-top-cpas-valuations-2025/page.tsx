@@ -15,20 +15,20 @@ export default function ForbesTopCPAsArticle() {
         <Header />
 
         {/* Hero Banner */}
-        <section className="relative overflow-hidden bg-primary-950">
+        <section className="relative overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
           </div>
 
           <div className="relative z-10">
-            <div className="container mx-auto px-6 pt-40 pb-16">
+            <div className="container mx-auto px-6">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                   {/* Left - Text Content */}
                   <div className="lg:col-span-3">
                     {/* Breadcrumb */}
-                    <nav aria-label="Breadcrumb" className="mb-8">
+                    <nav aria-label="Breadcrumb" className="mb-5">
                       <ol className="flex items-center space-x-2 text-sm text-[#D4AF37]/80">
                         <li><Link href="/" className="text-white/75 hover:text-[#D4AF37] transition-colors">Home</Link></li>
                         <li className="text-white/40">/</li>
@@ -44,10 +44,10 @@ export default function ForbesTopCPAsArticle() {
                       </span>
                       <span className="ml-3 text-white/60 text-sm">March 6, 2026</span>
                     </div>
-                    <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    <h1 className="text-3xl lg:text-4xl font-bold text-white mb-5 leading-tight">
                       Jason Engel Named to Forbes&apos; Inaugural List of America&apos;s Top CPAs in Valuations
                     </h1>
-                    <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed max-w-4xl">
+                    <p className="text-lg lg:text-xl text-white/90 mb-6 leading-relaxed max-w-4xl">
                       Drawn from nominations, independent research, and interviews with industry leaders and experts.
                     </p>
                     <div className="flex flex-wrap items-center gap-6 text-white/90">
@@ -65,7 +65,7 @@ export default function ForbesTopCPAsArticle() {
 
                   {/* Right - Forbes Logo */}
                   <div className="lg:col-span-2 flex items-center justify-center">
-                    <div className="relative w-full h-[300px] lg:h-[400px] p-6">
+                    <div className="relative w-full h-[140px] lg:h-[260px] p-2">
                       <Image
                         src="/images/memberships/forbes.png"
                         alt="Forbes Top CPAs for Valuations 2025"

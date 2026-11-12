@@ -68,7 +68,7 @@ export default function BankruptcyInsolvencyPage() {
       <main className="min-h-screen">
 
         {/* HERO */}
-        <section className="relative min-h-[70vh] flex items-end overflow-hidden bg-primary-950">
+        <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
 
           <div className="absolute inset-0 z-0 pointer-events-none">
 
@@ -95,22 +95,22 @@ export default function BankruptcyInsolvencyPage() {
 
           </div>
 
-          <div className="container-custom relative z-10 w-full pb-20 pt-40">
+          <div className="container-custom relative z-10 w-full">
 
             <motion.div style={{ y: springY1, opacity }} className="max-w-5xl">
 
-              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">
+              <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">
                 Practice Area
               </p>
 
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9]">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
                 Bankruptcy &<br />
                 <span className="font-serif italic text-[#D4AF37] font-medium">
                   Insolvency
                 </span>
               </h1>
 
-              <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+              <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
 
             </motion.div>
 

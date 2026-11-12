@@ -154,7 +154,7 @@ export default function BlogPost({ params }: Props) {
         <Header />
 
         {/* Hero Banner with Full Image - Extends Behind Header */}
-        <section className="relative min-h-[600px] lg:min-h-[700px] flex items-end pt-36 overflow-hidden">
+        <section className="relative flex items-end pt-[calc(var(--hdr)+1.5rem)] overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src={post.image}
@@ -167,7 +167,7 @@ export default function BlogPost({ params }: Props) {
           </div>
 
           <div className="relative z-10 w-full">
-            <div className="container mx-auto px-6 pb-12 lg:pb-16">
+            <div className="container mx-auto px-6 pb-10 lg:pb-12">
               <div className="max-w-4xl mx-auto">
                 {/* Breadcrumb Navigation - Positioned over image */}
                 <nav aria-label="Breadcrumb" className="mb-8 hidden">
@@ -185,10 +185,10 @@ export default function BlogPost({ params }: Props) {
                     {post.category}
                   </span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                   {post.title}
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed max-w-4xl">
+                <p className="text-lg sm:text-xl text-white/90 mb-6 leading-relaxed max-w-4xl">
                   {post.description}
                 </p>
                 <div className="flex flex-wrap items-center gap-6 text-white/90">

@@ -53,28 +53,28 @@ export default function NewsroomPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-primary-950">
+      <section className="relative flex items-end overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full" />
           <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#293995]/10 blur-[120px] rounded-full" />
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
         </div>
-        <div className="container-custom relative z-10 w-full pb-20 pt-40">
+        <div className="container-custom relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="max-w-5xl"
           >
-            <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-6">Latest Updates</p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
+            <p className="text-[#D4AF37] text-sm font-semibold tracking-[0.3em] uppercase mb-3">Latest Updates</p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[0.9]">
               News &amp; <span className="font-serif italic text-[#D4AF37] font-medium">Insights</span>
             </h1>
             <p className="text-white/50 text-lg md:text-xl font-light mt-6 max-w-2xl">
               Press releases, awards, events, and the latest updates from Engel & Engel LLP.
             </p>
-            <div className="h-[3px] w-24 bg-[#D4AF37] mt-8" />
+            <div className="h-[3px] w-24 bg-[#D4AF37] mt-5" />
           </motion.div>
         </div>
       </section>

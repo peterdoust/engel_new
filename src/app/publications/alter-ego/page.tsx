@@ -36,7 +36,7 @@ export default function AlterEgoPublications() {
             <Header />
 
             {/* ══════════ CINEMATIC HERO ══════════ */}
-            <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#1D2653]">
+            <section className="relative flex items-center overflow-hidden bg-[#293995] pt-[calc(var(--hdr)+1rem)] pb-10">
                 {/* Parallax Background Decorations */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {/* Glowing orbs */}
@@ -62,7 +62,7 @@ export default function AlterEgoPublications() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         >
-                            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white drop-shadow-2xl">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl">
                                 Alter Ego <br />
                                 <span className="font-serif italic text-[#D4AF37] font-medium">Publications</span>
                             </h1>

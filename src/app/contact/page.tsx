@@ -148,7 +148,7 @@ export default function ContactPage() {
       <main className="min-h-screen">
 
         {/* ══════════ CINEMATIC HERO ══════════ */}
-        <section className="relative pt-24 pb-8 lg:pt-32 lg:pb-12 overflow-hidden bg-primary-950 text-white text-center">
+        <section className="relative pt-[calc(var(--hdr)+1.5rem)] pb-8 lg:pb-12 overflow-hidden bg-[#293995] text-white text-center">
           {/* Subtle radial glow */}
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center top, rgba(212,175,55,0.06) 0%, transparent 60%)' }} />
 
@@ -169,9 +169,9 @@ export default function ContactPage() {
         </section>
 
         {/* ══════════ MAIN CONTENT ═════════ */}
-        <section className="relative bg-primary-950 z-20 -mt-8">
+        <section className="relative bg-[#293995] z-20 -mt-8">
           {/* Dark background that spans the full section */}
-          <div className="bg-primary-950 pt-16 pb-32">
+          <div className="bg-[#293995] pt-16 pb-32">
             <div className="container-custom">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16">
 
